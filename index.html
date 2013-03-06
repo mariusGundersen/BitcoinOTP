@@ -1,0 +1,19 @@
+<!doctype html>
+<body>
+	<div data-viewmodel="ViewModel">
+		<div data-bind="with: encode">
+			<label>Private Key: </label>
+			<input type="text" data-bind="value: privateKey" />
+			<span data-bind="validationMessageFor: privateKey"></span><br>
+			<label>Secret Key: </label><input type="text" readonly data-bind="value: secretKey" /><br>
+			<label>Shared Key: </label><input type="text" readonly data-bind="value: sharedKey" /><br>
+		</div>
+		<br> 
+		<div data-bind="with: decode">
+			<label>Secret Key: </label><input type="text" data-bind="value: secretKey" /><br>
+			<label>Shared Key: </label><input type="text" data-bind="value: sharedKey" /><br>
+			<label>Private Key: </label><input type="text" readonly data-bind="value: privateKey" /><br>
+		</div>
+	</div>
+	<script src="js/Libs/require-2.1.1.js" data-main="js/main.js"></script>
+</body>
