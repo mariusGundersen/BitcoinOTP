@@ -1,18 +1,113 @@
 <!doctype html>
+<head>
+	<title>Bitcoin OneTimePad</title>
+	<style>
+		body{
+			font-family: Helvetica, Verdana, Arial, Sans-Serif;
+		}
+		.info ul{
+			margin: 0 20px;
+			padding: 0;
+			
+		}
+		.field{
+			margin-top: 10px;
+		}
+		.field input{
+			width: 100%;
+			padding: 5px;
+			border-radius: 5px;
+			border: 1px solid #333;
+			font-family: monospace;
+			font-size: large;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-ie-box-sizing: border-box;
+			-o-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+		.field input[readonly]{
+			border-color: #ccc;
+		}
+		.field .error{
+			color: red;
+		}
+		
+			
+	@media only screen 
+	and (orientation : landscape) 
+	and (min-width : 1000px){
+		.info{
+			position: absolute;
+			left: 510px;
+		}
+		.field{
+			width: 500px;
+		}
+	}
+	@media only screen 
+	and (orientation : landscape) 
+	and (max-width : 1000px){
+		.info{
+			position: absolute;
+			left: 50%;
+		}
+		.field{
+			width: 50%;
+		}
+	}
+	</style>
+</head>
 <body>
 	<div data-viewmodel="ViewModel">
+		<h1>Bitcoin One Time Pad</h1>
+		<h2>Encrypt your private key</h2>
+		<div class="info">
+			<ul>
+				<li>Enter your private key
+				<li>The secret key is generated automatically
+				<li>Write the secret key down, and put it somewhere safe
+				<li>Give the shared key to someone else
+			</ul>
+		</div>
 		<div data-bind="with: encode">
-			<label>Private Key: </label>
-			<input type="text" data-bind="value: privateKey" />
-			<span data-bind="validationMessageFor: privateKey"></span><br>
-			<label>Secret Key: </label><input type="text" readonly data-bind="value: secretKey" /><br>
-			<label>Shared Key: </label><input type="text" readonly data-bind="value: sharedKey" /><br>
+			<div class="field">
+				<label>Private Key </label>
+				<span data-bind="validationMessageFor: privateKey" class="error"></span><br>
+				<input type="text" data-bind="value: privateKey, valueUpdate:'afterkeydown'" />
+			</div>
+			<div class="field">
+				<label>Secret Key </label><br>
+				<input type="text" readonly data-bind="value: secretKey" />
+			</div>
+			<div class="field">
+				<label>Shared Key </label><br>
+				<input type="text" readonly data-bind="value: sharedKey" />
+			</div>
 		</div>
 		<br> 
+		<h2>Decrypt your private key</h2>
+		<div class="info">
+			<ul>
+				<li>Enter both the secret key and shared key
+				<li>The private key will be calculated
+			</ul>
+		</div>
 		<div data-bind="with: decode">
-			<label>Secret Key: </label><input type="text" data-bind="value: secretKey" /><br>
-			<label>Shared Key: </label><input type="text" data-bind="value: sharedKey" /><br>
-			<label>Private Key: </label><input type="text" readonly data-bind="value: privateKey" /><br>
+			<div class="field">
+				<label>Secret Key </label>
+				<span data-bind="validationMessageFor: secretKey" class="error"></span><br>
+				<input type="text" data-bind="value: secretKey, valueUpdate:'afterkeydown'" />
+			</div>
+			<div class="field">
+				<label>Shared Key </label>
+				<span data-bind="validationMessageFor: sharedKey" class="error"></span><br>
+				<input type="text" data-bind="value: sharedKey, valueUpdate:'afterkeydown'" />
+			</div>
+			<div class="field">
+				<label>Private Key </label><br>
+				<input type="text" readonly data-bind="value: privateKey" />
+			</div>
 		</div>
 	</div>
 	<script src="js/Libs/require-2.1.1.js" data-main="js/main.js"></script>

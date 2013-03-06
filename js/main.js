@@ -6,6 +6,6 @@ require.config({
 	}
 });
 
-require(["ordnung/loader", "koExtensions", "ordnung/koExtensions"], function(load){
+require(["ordnung/loader", "ordnung/koExtensions"], function(load){
 	load();
 });
