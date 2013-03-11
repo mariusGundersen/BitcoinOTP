@@ -44,7 +44,7 @@ require(["ViewModel", "lib"], function(ViewModel, lib){
 			it("should decode correctly", function(){
 				vm.decode.secretKey("ab");
 				vm.decode.sharedKey("12")
-				expect(vm.decode.privateKey()).toBe("ac");
+				expect(vm.decode.privateKey()).toBe("RR");
 			});
 			
 			it("should be invalid if the secret key contains 0,O,I or l", function(){
